@@ -10,6 +10,6 @@ COPY . .
 
 USER 1000
 
-RUN composer install
+RUN composer install --prefer-dist
 
 CMD ["php","artisan","serve","--host=0.0.0.0"]
