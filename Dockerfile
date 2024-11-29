@@ -4,7 +4,7 @@ WORKDIR /var/www/html
 
 RUN apt-get update
 
-RUN curl -sS https://getcomposer.org/installer | php -- --version=1.10.26 --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --version=2.8.3 --install-dir=/usr/local/bin --filename=composer
 
 COPY . .
 
