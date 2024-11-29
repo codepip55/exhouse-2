@@ -8,6 +8,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --version=2.8.3 --instal
 
 COPY . .
 
+USER 1000
+
 RUN composer install
 
 CMD ["php","artisan","serve","--host=0.0.0.0"]
