@@ -1,4 +1,5 @@
 FROM php:8.3-cli
+FROM node:latest AS node
 
 # Set working directory
 WORKDIR /var/www/html
@@ -25,6 +26,9 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 
 # Install PHP dependencies
 RUN composer install --prefer-dist --no-scripts --no-dev --optimize-autoloader
+
+RUN npm install
+RUN npm run build
 
 # Expose port 8000
 EXPOSE 8000
