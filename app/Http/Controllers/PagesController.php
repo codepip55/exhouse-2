@@ -16,4 +16,13 @@ class PagesController
     public function getContact() {
         return view('pages/contact');
     }
+    public function getLogin() {
+        return view('pages/login');
+    }
+    public function getSignup() {
+        return view('pages/signup');
+    }
+    public function getResetPassword() {
+        return view('pages/resetpassword');
+    }
 }

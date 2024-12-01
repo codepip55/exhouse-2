@@ -4,7 +4,7 @@
     <div class="container mt-5 mb-96">
         <div class="text-8xl mt-[20%] relative inline-block">
             <h1>Op Huizenjacht?</h1>
-            <h1 class=" text-8xl font-thin">ExHouse heeft het voor jou!</h1>
+            <h1 class=" text-8xl font-thin">ExHo<span class="fa-solid fa-house fa-xs"></span>se heeft het voor jou!</h1>
             <span class="absolute left-0 bottom-0 h-[4px] bg-black w-[60%]"></span>
         </div>
 

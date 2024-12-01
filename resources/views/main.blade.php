@@ -79,6 +79,7 @@
         <li><a href="/huizen">Huizen</a></li>
         <li><a href="/overons">Over Ons</a></li>
         <li><a href="/contact">Contact</a></li>
+        <li><a href="/login">Login</a></li>
     </ul>
 </nav>
 @yield('content')
@@ -93,8 +94,8 @@
                 <h3 class="text-xl font-semibold">Navigatie</h3>
                 <ul class="mt-2">
                     <li><a href="/" class="text-slate-700 hover:text-[#555]">Home</a></li>
-                    <li><a href="/huizen" class="text-slate-700 hover:text-[#555]">Over ons</a></li>
-                    <li><a href="/overons" class="text-slate-700 hover:text-[#555]">Huizen</a></li>
+                    <li><a href="/overons" class="text-slate-700 hover:text-[#555]">Over ons</a></li>
+                    <li><a href="/huizen" class="text-slate-700 hover:text-[#555]">Huizen</a></li>
                     <li><a href="/contact" class="text-slate-700 hover:text-[#555]">Contact</a></li>
                 </ul>
             </div>
