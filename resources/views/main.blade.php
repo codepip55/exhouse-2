@@ -79,7 +79,11 @@
         <li><a href="/huizen">Huizen</a></li>
         <li><a href="/overons">Over Ons</a></li>
         <li><a href="/contact">Contact</a></li>
-        <li><a href="/login">Login</a></li>
+        @auth
+            <li><a href="/logout">Welcome, {{auth()->user()->name}}</a></li>
+        @else
+            <li><a href="/login">Login</a></li>
+        @endauth
     </ul>
 </nav>
 @yield('content')

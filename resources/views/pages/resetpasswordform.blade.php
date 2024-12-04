@@ -10,19 +10,24 @@
                 <h1 class="text-3xl font-thin">Reset Password</h1>
                 <div class="h-px w-full bg-slate-600 mx-auto"></div>
                 <div>
-                    <form action="/forgotpassword" method="POST">
+                    <form action="/resetpassword" method="POST">
                         @csrf
+                        <input type="hidden" name="token" value="{{ $token }}">
+                        <input type="hidden" name="email" value="{{ $email }}">
                         <div class="flex flex-col gap-4 mt-4">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" id="email" class="border border-slate-600 rounded-sm p-2">
-                            @error('email')
-                                <p class="text-red-500 text-sm">{{ $message }}</p>
-                            @enderror
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" class="border border-slate-600 rounded-sm p-2">
                         </div>
                         <div class="flex flex-col gap-4 mt-4">
+                            <label for="password_confirmation">Confirm Password</label>
+                            <input type="password" name="password_confirmation" id="password_confirmation" class="border border-slate-600 rounded-sm p-2">
+                        <div class="flex flex-col gap-4 mt-4">
                             <x-button.secondary type="submit">
-                                Send Reset Email
+                                Reset Password
                             </x-button.secondary>
+                            @error('status')
+                                <p class="text-red-500 text-sm">{{ $message }}</p>
+                            @enderror
                             <div class="flex justify-between">
                                 <a href="/login" class="text-slate-600 hover:text-slate-700 text-sm">Login</a>
                             </div>

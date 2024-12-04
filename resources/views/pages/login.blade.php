@@ -19,6 +19,9 @@
                         <div class="flex flex-col gap-4 mt-4">
                             <label for="password">Password</label>
                             <input type="password" name="password" id="password" class="border border-slate-600 rounded-sm p-2">
+                            @error('email')
+                                <p class="text-red-500 text-xs">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="flex flex-col gap-4 mt-4">
                             <x-button.primary type="submit">

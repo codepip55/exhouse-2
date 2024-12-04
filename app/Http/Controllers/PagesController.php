@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 class PagesController
 {
     public function getHome() {
@@ -24,5 +26,8 @@ class PagesController
     }
     public function getResetPassword() {
         return view('pages/resetpassword');
+    }
+    public function getResetPasswordForm(Request $request) {
+        return view('pages/resetpasswordform', ['token' => $request->token, 'email' => $request->email]);
     }
 }
