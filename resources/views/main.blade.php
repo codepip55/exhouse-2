@@ -80,7 +80,7 @@
         <li><a href="/overons">Over Ons</a></li>
         <li><a href="/contact">Contact</a></li>
         @auth
-            <li><a href="/logout">Welcome, {{auth()->user()->name}}</a></li>
+            <li><a href="/logout">{{auth()->user()->name}} (Logout)</a></li>
         @else
             <li><a href="/login">Login</a></li>
         @endauth

@@ -23,4 +23,5 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/logout', [LoginController::class, 'logout']);
+    Route::post('/contact', [PagesController::class, 'postContact']);
 });
