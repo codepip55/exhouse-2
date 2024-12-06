@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HuizenController;
 
 Route::get('/', [PagesController::class, 'getHome']);
-Route::get('/huizen', [PagesController::class, 'getHuizen']);
+Route::get('/huizen', [HuizenController::class, 'getHuizenPagina']);
+Route::get('/huizen/{id}', [HuizenController::class, 'getHuisPagina'])->name('huis');
 Route::get('/overons', [PagesController::class, 'getOverOns']);
 Route::get('/contact', [PagesController::class, 'getContact']);
 
@@ -24,4 +26,6 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/logout', [LoginController::class, 'logout']);
     Route::post('/contact', [PagesController::class, 'postContact']);
+
+    Route::get('/dashboard', [PagesController::class, 'getDashboard'])->name('dashboard.home');
 });

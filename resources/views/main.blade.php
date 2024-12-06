@@ -69,9 +69,6 @@
         color: #555;
     }
 </style>
-<script>
-
-</script>
 <body>
 <nav class="navbar">
     <ul class="nav-links w-full justify-between ml-10">
@@ -80,7 +77,7 @@
         <li><a href="/overons">Over Ons</a></li>
         <li><a href="/contact">Contact</a></li>
         @auth
-            <li><a href="/logout">{{auth()->user()->name}} (Logout)</a></li>
+            <li><a href="/dashboard">Welkom, {{auth()->user()->name}}</a></li>
         @else
             <li><a href="/login">Login</a></li>
         @endauth

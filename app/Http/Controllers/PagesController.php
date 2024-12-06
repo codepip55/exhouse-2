@@ -6,14 +6,12 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Mail\ContactForm;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Huizen;
 
 class PagesController
 {
     public function getHome() {
         return view('pages/home');
-    }
-    public function getHuizen() {
-        return view('pages/huizen');
     }
     public function getOverOns() {
         return view('pages/overons');
@@ -44,5 +42,8 @@ class PagesController
         Mail::to(env('SITE_ADMIN_EMAIL', 'contact@pepijncolenbrander.com'))->send(new ContactForm($request->name, $request->email, $request->contact_message));
 
         return redirect('/contact')->with('sent', 'success');
+    }
+    public function getDashboard() {
+        return view('pages/dashboard/home');
     }
 }
