@@ -98,6 +98,7 @@
                     <li><a href="/overons" class="text-slate-700 hover:text-[#555]">Over ons</a></li>
                     <li><a href="/huizen" class="text-slate-700 hover:text-[#555]">Huizen</a></li>
                     <li><a href="/contact" class="text-slate-700 hover:text-[#555]">Contact</a></li>
+                    <li><a href="https://pepijncolenbrander.com/tools" target="_blank" class="text-slate-700 hover:text-[#555]">Privacy Beleid</a></li>
                 </ul>
             </div>
             <div class="w-full sm:w-1/3">

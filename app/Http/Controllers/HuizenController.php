@@ -22,6 +22,8 @@ class HuizenController extends Controller
     {
         $huis = Huizen::find($id);
         $huis->fotos = json_decode($huis->fotos);
-        return view('pages/huis', ['huis' => $huis]);
+
+        $translate = 0;
+        return view('pages/huizen/huis-info', ['huis' => $huis, 'translate' => $translate]);
     }
 }

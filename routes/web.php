@@ -6,7 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HuizenController;
 
 Route::get('/', [PagesController::class, 'getHome']);
-Route::get('/huizen', [HuizenController::class, 'getHuizenPagina']);
+Route::get('/huizen', [HuizenController::class, 'getHuizenPagina'])->name('huizen');
 Route::get('/huizen/{id}', [HuizenController::class, 'getHuisPagina'])->name('huis');
 Route::get('/overons', [PagesController::class, 'getOverOns']);
 Route::get('/contact', [PagesController::class, 'getContact']);
