@@ -28,6 +28,16 @@
                             <label for="password_confirmation">Confirm Password</label>
                             <input type="password" name="password_confirmation" id="password_confirmation" class="border border-slate-600 rounded-sm p-2">
                         </div>
+                        @if ($errors->any())
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                <strong class="font-bold">Er is iets misgegaan!</strong>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li><span class="block sm:inline">{{ $error }}</span></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="flex flex-col gap-4 mt-4">
                             <x-button.primary type="submit">
                                 Register

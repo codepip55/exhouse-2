@@ -56,12 +56,61 @@
                         <li class="mt-1"><i class="fa-solid fa-car"></i> Garage capaciteit: {{ $huis->garage_capaciteit }} auto(s)</li>
                     </ul>
 
-                    <p class="mt-5">Prijs: €{{ $huis->prijs_per_week }} per week</p>
-                    <x-button.primary class="mt-5 w-full">
-                        Reserveren
-                    </x-button.primary>
+                    <p class="mt-5">Prijs: €{{ $huis->prijs_per_week }} per persoon per week</p>
                 </div>
             </div>
+        </div>
+
+        <div class="mt-5">
+            <h2 class="text-2xl font-thin">Reserveren</h2>
+            <div class="h-px w-full bg-slate-600 mx-auto"></div>
+            <form action="{{ route('reserveren.check') }}" method="GET" class="mt-5 p-5 bg-white">
+                @csrf
+                <input type="hidden" name="huis_id" value="{{ $huis->huis_id }}">
+                <div class="grid grid-cols-2 gap-5">
+                    <h3 class="col-span-2 text-lg font-thin">Boeking Gegevens</h3>
+                    <div class="col-span-1">
+                        <label for="start_datum" class="block text-sm">Start datum</label>
+                        <input type="date" name="start_datum" id="start_datum" class="w-full p-2 border border-slate-300 rounded-md" required>
+                    </div>
+                    <div class="col-span-1">
+                        <label for="eind_datum" class="block text-sm">Eind datum</label>
+                        <input type="date" name="eind_datum" id="eind_datum" class="w-full p-2 border border-slate-300 rounded-md" required>
+                    </div>
+                    <div class="col-span-1">
+                        <label for="aantal_personen" class="block text-sm">Aantal personen</label>
+                        <input type="number" name="aantal_personen" id="aantal_personen" min="1" max="{{ $huis->aantal_personen }}" class="w-full p-2 border border-slate-300 rounded-md" required>
+                    </div>
+                    <h3 class="col-span-2 text-lg font-thin">Persoonlijke Gegevens</h3>
+                    <div class="col-span-1">
+                        <label for="naam" class="block text-sm">Naam</label>
+                        <input type="text" name="naam" id="naam" class="w-full p-2 border border-slate-300 rounded-md" required value="{{ auth()->user() ? auth()->user()->name : '' }}">
+                    </div>
+                    <div class="col-span-1">
+                        <label for="email" class="block text-sm">Email</label>
+                        <input type="email" name="email" id="email" class="w-full p-2 border border-slate-300 rounded-md" required value="{{ auth()->user() ? auth()->user()->email : '' }}">
+                    </div>
+                    <div class="col-span-2">
+                        <label for="opmerkingen" class="block text-sm">Opmerkingen</label>
+                        <textarea name="opmerkingen" id="opmerkingen" class="w-full p-2 border border-slate-300 rounded-md" rows="5"></textarea>
+                    </div>
+                    <div class="col-span-2">
+                        @if($errors->any())
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                <strong class="font-bold">Er is iets misgegaan!</strong>
+                                <ul class="mt-1">
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+                <x-button.primary class="mt-5">
+                    Reserveren
+                </x-button.primary>
+            </form>
         </div>
     </div>
 

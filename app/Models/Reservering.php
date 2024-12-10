@@ -13,22 +13,20 @@ class Reservering extends Model
     protected $table = 'reserveringen';
     protected $primaryKey = 'reservering_id';
     protected $fillable = [
-        'user_id',
-        'huis_id',
         'start_datum',
         'eind_datum',
         'aantal_personen',
         'totaal_prijs',
         'betaald',
         'betaal_datum',
-        'totaal_prijs'
+        'opmerkingen'
     ];
 
-    public function klant()
+    public function user_id()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-    public function huis()
+    public function huis_id()
     {
         return $this->belongsTo(Huizen::class, 'huis_id', 'huis_id');
     }

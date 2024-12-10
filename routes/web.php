@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HuizenController;
+use App\Http\Controllers\ReserveringController;
 
 Route::get('/', [PagesController::class, 'getHome']);
 Route::get('/huizen', [HuizenController::class, 'getHuizenPagina'])->name('huizen');
@@ -12,8 +13,8 @@ Route::get('/overons', [PagesController::class, 'getOverOns']);
 Route::get('/contact', [PagesController::class, 'getContact']);
 
 Route::middleware('guest')->group(function () {
-    Route::get('/login', [PagesController::class, 'getLogin']);
-    Route::get('/register', [PagesController::class, 'getSignup']);
+    Route::get('/login', [PagesController::class, 'getLogin'])->name('login');
+    Route::get('/register', [PagesController::class, 'getSignup'])->name('register');
     Route::get('/forgotpassword', [PagesController::class, 'getResetPassword'])->name('password.request');
     Route::get('/resetpassword/{token}', [PagesController::class, 'getResetPasswordForm'])->name('password.reset');
 
@@ -28,4 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/contact', [PagesController::class, 'postContact']);
 
     Route::get('/dashboard', [PagesController::class, 'getDashboard'])->name('dashboard.home');
+
+    Route::get('/reserveren/check', [ReserveringController::class, 'getReserveren'])->name('reserveren.check');
+    Route::post('/reserveren', [ReserveringController::class, 'postReservering'])->name('huizen.reserveren');
 });
