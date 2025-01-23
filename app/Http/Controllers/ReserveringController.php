@@ -42,17 +42,17 @@ class ReserveringController extends Controller
         $huis = Huizen::find($request->huis_id);
         $days = (strtotime($request->eind_datum) - strtotime($request->start_datum)) / 86400;
 
-//        try {
-//            Mail::to(auth()->user()->email)->send(new Invoice(
-//                $reservering->reservering_id,
-//                date('d-m-Y'),
-//                date('d-m-Y', strtotime('+14 days')),
-//                $huis->naam,
-//                $days,
-//                $huis->prijs_per_week,
-//                $reservering->totaal_prijs
-//            ));
-//        } catch (\Exception $e) { }
+        try {
+            Mail::to(auth()->user()->email)->send(new Invoice(
+                $reservering->reservering_id,
+                date('d-m-Y'),
+                date('d-m-Y', strtotime('+14 days')),
+                $huis->naam,
+                $days,
+                $huis->prijs_per_week,
+                $reservering->totaal_prijs
+            ));
+        } catch (\Exception $e) { }
 
         return redirect()->route('dashboard.home');
     }
@@ -106,5 +106,12 @@ class ReserveringController extends Controller
         $reservering->betaald_datum = null;
 
         return view('pages/huizen/reserveren', ['reservering' => $reservering, 'huis' => $huis, 'user' => $user]);
+    }
+    public function cancelReservering(Request $request)
+    {
+        $reservering = Reservering::find($request->res_id);
+        $reservering->delete();
+
+        return redirect()->route('dashboard.home');
     }
 }

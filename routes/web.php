@@ -32,4 +32,5 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/reserveren/check', [ReserveringController::class, 'getReserveren'])->name('reserveren.check');
     Route::post('/reserveren', [ReserveringController::class, 'postReservering'])->name('huizen.reserveren');
+    Route::get('/reserveren/{res_id}/cancel', [ReserveringController::class, 'cancelReservering'])->name('reserveren.cancel');
 });

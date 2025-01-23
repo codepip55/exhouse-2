@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="mt-5">
-                    <x-button.secondary href="/reserveringen/{{ $reservering->id }}/cancel">
+                    <x-button.secondary href="/reserveren/{{ $reservering->reservering_id }}/cancel">
                         Annuleren
                     </x-button.secondary>
                 </div>
