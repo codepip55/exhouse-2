@@ -28,7 +28,7 @@
                 </div>
                 <form action="{{ route('huizen.reserveren') }}" method="POST" class="mt-5">
                     @csrf
-                    <input type="hidden" name="huis_id" value="{{ $reservering->huis_id }}">
+                    <input type="hidden" name="huis_id" value="{{ $huis->huis_id }}">
                     <input type="hidden" name="user_id" value="{{ $user->id }}">
                     <input type="hidden" name="start_datum" value="{{ $reservering->start_datum }}">
                     <input type="hidden" name="eind_datum" value="{{ $reservering->eind_datum }}">

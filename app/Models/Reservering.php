@@ -22,11 +22,11 @@ class Reservering extends Model
         'opmerkingen'
     ];
 
-    public function user_id()
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-    public function huis_id()
+    public function huis()
     {
         return $this->belongsTo(Huizen::class, 'huis_id', 'huis_id');
     }

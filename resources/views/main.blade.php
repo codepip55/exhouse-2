@@ -75,7 +75,7 @@
         <li><a class="hover:cursor-pointer text-lg" href="/">ExHo<span class="fa-solid fa-house fa-xs"></span>se</a></li>
         <li><a href="/huizen">Huizen</a></li>
         <li><a href="/overons">Over Ons</a></li>
-        <li><a href="/contact">Contact</a></li>
+{{--        <li><a href="/contact">Contact</a></li>--}}
         @auth
             <li><a href="/dashboard">Welkom, {{auth()->user()->name}}</a></li>
         @else
@@ -97,7 +97,7 @@
                     <li><a href="/" class="text-slate-700 hover:text-[#555]">Home</a></li>
                     <li><a href="/overons" class="text-slate-700 hover:text-[#555]">Over ons</a></li>
                     <li><a href="/huizen" class="text-slate-700 hover:text-[#555]">Huizen</a></li>
-                    <li><a href="/contact" class="text-slate-700 hover:text-[#555]">Contact</a></li>
+{{--                    <li><a href="/contact" class="text-slate-700 hover:text-[#555]">Contact</a></li>--}}
                     <li><a href="https://pepijncolenbrander.com/tools" target="_blank" class="text-slate-700 hover:text-[#555]">Privacy Beleid</a></li>
                 </ul>
             </div>

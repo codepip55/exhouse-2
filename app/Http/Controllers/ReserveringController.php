@@ -10,6 +10,8 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Invoice;
 
 class ReserveringController extends Controller
 {
@@ -26,8 +28,8 @@ class ReserveringController extends Controller
         ]);
 
         $reservering = new Reservering();
-        $reservering->user_id = $request->user_id;
-        $reservering->huis_id = $request->huis_id;
+        $reservering->user = $request->user_id;
+        $reservering->huis = $request->huis_id;
         $reservering->start_datum = $request->start_datum;
         $reservering->eind_datum = $request->eind_datum;
         $reservering->aantal_personen = $request->aantal_personen;
@@ -36,6 +38,21 @@ class ReserveringController extends Controller
         $reservering->betaald = false;
         $reservering->betaal_datum = null;
         $reservering->save();
+
+        $huis = Huizen::find($request->huis_id);
+        $days = (strtotime($request->eind_datum) - strtotime($request->start_datum)) / 86400;
+
+//        try {
+//            Mail::to(auth()->user()->email)->send(new Invoice(
+//                $reservering->reservering_id,
+//                date('d-m-Y'),
+//                date('d-m-Y', strtotime('+14 days')),
+//                $huis->naam,
+//                $days,
+//                $huis->prijs_per_week,
+//                $reservering->totaal_prijs
+//            ));
+//        } catch (\Exception $e) { }
 
         return redirect()->route('dashboard.home');
     }
@@ -78,8 +95,8 @@ class ReserveringController extends Controller
         $total = round($total, 2);
 
         $reservering = new Reservering();
-        $reservering->user_id = $user->id;
-        $reservering->huis_id = $request->huis_id;
+        $reservering->user = $user->id;
+        $reservering->huis = $request->huis_id;
         $reservering->start_datum = $request->start_datum;
         $reservering->eind_datum = $request->eind_datum;
         $reservering->aantal_personen = $request->aantal_personen;

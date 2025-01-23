@@ -1,6 +1,20 @@
 @extends('main')
 
 @section('content')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const startDatumInput = document.getElementById('start_datum');
+            const eindDatumInput = document.getElementById('eind_datum');
+
+            startDatumInput.addEventListener('change', function () {
+                const startDate = new Date(startDatumInput.value);
+                const minEndDate = new Date(startDate);
+                minEndDate.setDate(startDate.getDate() + 1);
+                eindDatumInput.min = minEndDate.toISOString().split('T')[0];
+            });
+        });
+    </script>
+
     <div class="container mt-5">
         <a href="{{ route('huizen') }}" class="text-sm text-slate-600 hover:text-slate-800">
             <i class="fa-solid fa-arrow-left"></i> Terug naar overzicht
@@ -71,7 +85,7 @@
                     <h3 class="col-span-2 text-lg font-thin">Boeking Gegevens</h3>
                     <div class="col-span-1">
                         <label for="start_datum" class="block text-sm">Start datum</label>
-                        <input type="date" name="start_datum" id="start_datum" class="w-full p-2 border border-slate-300 rounded-md" required>
+                        <input type="date" name="start_datum" id="start_datum" min="{{ date("Y-m-d") }}" class="w-full p-2 border border-slate-300 rounded-md" required>
                     </div>
                     <div class="col-span-1">
                         <label for="eind_datum" class="block text-sm">Eind datum</label>

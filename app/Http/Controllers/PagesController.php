@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Mail\ContactForm;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Huizen;
+use App\Models\Reservering;
 
 class PagesController
 {
@@ -39,11 +40,24 @@ class PagesController
             'contact_message' => ['required', 'min:5', 'max:500', 'string']
         ]);
 
-        Mail::to(env('SITE_ADMIN_EMAIL', 'contact@pepijncolenbrander.com'))->send(new ContactForm($request->name, $request->email, $request->contact_message));
+//        try {
+//            Mail::to(env('SITE_ADMIN_EMAIL', 'contact@pepijncolenbrander.com'))->send(new ContactForm($request->name, $request->email, $request->contact_message));
+//        } catch (\Exception $e) { }
 
         return redirect('/contact')->with('sent', 'success');
     }
     public function getDashboard() {
-        return view('pages/dashboard/home');
+        $reserveringen = Reservering::with('huis')->where('user', auth()->user()->id)->get();
+        $reserveringen = $reserveringen->filter(function ($reservering) {
+            return strtotime($reservering->eind_datum) >= strtotime(date('Y-m-d'));
+        });
+        $user = auth()->user();
+
+        // For each reservering, get the huis
+        foreach ($reserveringen as $reservering) {
+            $reservering->huis_populated = Huizen::find($reservering->huis);
+        }
+
+        return view('pages/dashboard/home', ['reserveringen' => $reserveringen, 'user' => $user]);
     }
 }

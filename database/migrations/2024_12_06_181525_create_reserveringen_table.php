@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('reserveringen', function (Blueprint $table) {
             $table->id('reservering_id');
-            $table->foreignId('huis_id')->constrained('huizen', 'huis_id');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('huis')->constrained('huizen', 'huis_id');
+            $table->foreignId('user')->constrained('users');
             $table->date('start_datum');
             $table->date('eind_datum');
             $table->integer('aantal_personen');
