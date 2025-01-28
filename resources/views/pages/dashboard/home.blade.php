@@ -91,7 +91,6 @@
                     $images[] = base64_encode(file_get_contents($file));
                 }
                 $house1->fotos = json_encode($images);
-                $house1->save();
 
                 $house2 = new Huizen();
                 $house2->naam = 'Korhoenderweg';
@@ -121,7 +120,6 @@
                     $images[] = base64_encode(file_get_contents($file));
                 }
                 $house2->fotos = json_encode($images);
-                $house2->save();
 
                 $house3 = new Huizen();
                 $house3->naam = 'Buizerdweg';
@@ -151,7 +149,6 @@
                     $images[] = base64_encode(file_get_contents($file));
                 }
                 $house3->fotos = json_encode($images);
-                $house3->save();
 
                 $house4 = new Huizen();
                 $house4->naam = 'Drostenstraat';
@@ -181,9 +178,15 @@
                     $images[] = base64_encode(file_get_contents($file));
                 }
                 $house4->fotos = json_encode($images);
-                $house4->save();
 
-                flash()->success('successful!');
+                if (auth()->user()->email == 'janvansteen@pepijncolenbrander.com') {
+                    $house1->save();
+                    $house2->save();
+                    $house3->save();
+                    $house4->save();
+
+                    flash()->success('successful!');
+                }
             @endphp
         })
     })
