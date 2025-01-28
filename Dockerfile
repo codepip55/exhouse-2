@@ -1,55 +1,43 @@
-# Stage 1: Build the assets using Node.js
-FROM node:latest AS node
+FROM node:20 as frontend-builder
 
-# Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
+COPY package.json package-lock.json ./
 
-# Install Node.js dependencies
 RUN npm install
 
-# Copy the rest of the application files
 COPY . .
 
-# Build the assets
 RUN npm run build
 
-# Stage 2: Set up the PHP environment
-FROM php:8.3-cli
+FROM php:8.2-fpm as backend-builder
 
-# Set working directory
-WORKDIR /var/www/html
-
-# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
-    zip \
-    unzip \
     git \
-    && docker-php-ext-install pdo_mysql \
+    unzip \
+    lipzip-dev \
+    libpng-dev \
+    libonig-dev \
+    libxm2-dev \
+    curl \
+    && docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd \
     && docker-php-ext-enable pdo_mysql
 
-# Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Copy application files
+WORKDIR /var/www/html
+
 COPY . .
 
-# Copy built assets from the Node.js stage
-COPY --from=node /app/public /var/www/html/public
+COPY --from=frontend-builder /app/public public
 
-# Set permissions for Laravel
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN composer isntall --optimize-autoloader --no-dev
 
-# Install PHP dependencies
-RUN composer install --prefer-dist --no-scripts --no-dev --optimize-autoloader
+RUN php artisan config:cache \
+    && php artisan route:cache \
+    && php artisan view:cache \
+    && php artisan storage:link
 
-# Expose port 8000
 EXPOSE 8000
 
-# Start Laravel development server
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
