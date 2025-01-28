@@ -75,7 +75,7 @@
         <li><a class="hover:cursor-pointer text-lg" href="/">ExHo<span class="fa-solid fa-house fa-xs"></span>se</a></li>
         <li><a href="/huizen">Huizen</a></li>
         <li><a href="/overons">Over Ons</a></li>
-{{--        <li><a href="/contact">Contact</a></li>--}}
+        <li><a href="/contact">Contact</a></li>
         @auth
             <li><a href="/dashboard">Welkom, {{auth()->user()->name}}</a></li>
         @else

@@ -40,9 +40,9 @@ class PagesController
             'contact_message' => ['required', 'min:5', 'max:500', 'string']
         ]);
 
-//        try {
-//            Mail::to(env('SITE_ADMIN_EMAIL', 'contact@pepijncolenbrander.com'))->send(new ContactForm($request->name, $request->email, $request->contact_message));
-//        } catch (\Exception $e) { }
+        try {
+            Mail::to(env('SITE_ADMIN_EMAIL', 'contact@pepijncolenbrander.com'))->send(new ContactForm($request->name, $request->email, $request->contact_message));
+        } catch (\Exception $e) { }
 
         return redirect('/contact')->with('sent', 'success');
     }
