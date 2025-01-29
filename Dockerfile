@@ -50,7 +50,8 @@ RUN composer install --optimize-autoloader --no-dev
 RUN php artisan config:cache \
     && php artisan route:cache \
     && php artisan view:cache \
-    && php artisan storage:link
+    && php artisan storage:link \
+    && php artisan key:generate
 
 # Expose the application port
 EXPOSE 8000
