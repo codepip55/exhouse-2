@@ -57,6 +57,8 @@ RUN php artisan config:cache \
     && php artisan view:cache \
     && php artisan storage:link
 
+RUN php artisan key:generate
+
 # Expose the application port
 EXPOSE 8000
 
