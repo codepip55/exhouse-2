@@ -58,7 +58,7 @@ COPY . /var/www/html
 WORKDIR /var/www/html
 
 # 4. Setup application dependencies
-RUN composer install --optimize-autoloader --no-dev \
+RUN composer install --optimize-autoloader \
     && mkdir -p storage/logs \
     && php artisan optimize:clear \
     && chown -R www-data:www-data /var/www/html \
