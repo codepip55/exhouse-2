@@ -13,7 +13,7 @@
     <h1 class="text-9xl font-thin text-transparent sharp-text-gradient z-10 ml-12 uppercase">Over Ons</h1>
     <div class="relative -mt-20 -z-50">
         <img class="w-[60%] absolute left-0 top-0" src="https://wp.pepijncolenbrander.com/wp-content/uploads/2024/11/house-1.jpg">
-        <img class="absolute right-0 top-5 w-[50%]" src="https://wp.pepijncolenbrander.com/wp-content/uploads/2024/12/house-2-2.jpg">
+        <img class="absolute right-0 top-5 w-[50%]" src="https://wp.pepijncolenbrander.com/wp-content/uploads/2025/02/house-2-2.jpg">
     </div>
 
     <div class="mt-[30rem] ml-3 w-[32rem] flex flex-col space-y-5 text-lg">
